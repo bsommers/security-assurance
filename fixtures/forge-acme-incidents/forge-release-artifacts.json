@@ -1,6 +1,6 @@
 {
   "protocol_revision": "2026-07-28",
-  "container_image": "ghcr.io/bsommers/forged-mcp-acme-incidents:1.3.0",
+  "container_image": "ghcr.io/bsommers/forged-mcp-acme-incidents:1.4.0",
   "governance": {
     "required_labels": ["needs-security-review", "mcp-2026-07-28"],
     "requires_appsec_destructive_signoff": true,

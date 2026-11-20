@@ -4,7 +4,7 @@
     "metadata": {
       "title": "MCP Server Forge Golden Template Component Definition (MCP-001..008)",
       "last-modified": "2026-11-19T00:00:00Z",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "oscal-version": "1.1.2",
       "props": [
         {
@@ -182,7 +182,7 @@
               {
                 "uuid": "38ca302e-fe45-54d6-828c-215559d1311c",
                 "control-id": "sc-5",
-                "description": "Enforces 15.0s upstream HTTP timeout and 32,768-byte ForgeResponseLimitingMiddleware (string byte axis shipped in v1.3.0; array-cardinality slicing tracked in POAM-FORGE-W4.4).",
+                "description": "Enforces 15.0s upstream HTTP timeout and dual-axis 32,768-byte ForgeResponseLimitingMiddleware (Pass 1 collection cardinality slicing + Pass 2 conservative UTF-8 string bounding shipped in v1.4.0, closing POAM-FORGE-W4.4).",
                 "props": [
                   {
                     "name": "secure-design-patterns",

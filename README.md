@@ -113,6 +113,7 @@ uv run mypy --strict -p security_assurance -p scripts
 
 ## Documentation
 
+- **[Strategic Value & Relevance Assessment](docs/ECOSYSTEM_VALUE_AND_RELEVANCE.md)**
 - **[Architecture Deep Dive: OSCAL 1.1.2 & OPA/Rego](docs/ARCHITECTURE_OSCAL_AND_REGO.md)**
 - **[ADR-0001: Canonical OSCAL JSON SSPs & Rego PDPs](docs/adr/0001-oscal-json-ssps-and-opa-rego-pdps.md)**
 - **[Rendered Forge System Security Plan (`acme-incidents-SSP.md`)](docs/rendered/acme-incidents-SSP.md)**

@@ -1,7 +1,7 @@
 {
   "system_id": "forge-acme-incidents",
   "repository": "https://github.com/bsommers/forge",
-  "git_tag": "v1.3.0",
+  "git_tag": "v1.4.0",
   "cosis_use_cases": ["UC-AGENT-SINGLE", "UC-AGENT-MULTI", "UC-DEV"],
   "baseline": "moderate",
   "gates": {
@@ -11,16 +11,11 @@
     "gate_4_pytest_branch_coverage_pct": 100.0,
     "gate_5_stdio_server_discover": "pass",
     "github_actions_sha_pinned": true,
-    "locked_workspace_sha256_verified": true
+    "locked_workspace_sha256_verified": true,
+    "dual_axis_payload_bounding_verified": true,
+    "stage5_emit_oscal_enabled": true
   },
   "known_limitations": [
-    {
-      "gap_id": "POAM-FORGE-W4.4",
-      "control_id": "sc-5",
-      "title": "High-cardinality short-string arrays (>3,000 items <16B each) bypass string-only 32KiB middleware cap",
-      "remediation_milestone": "M4 (v1.4.0) — Dual-Axis Structured Payload Bounding (MCP-003)",
-      "target_date": "2026-12-15"
-    },
     {
       "gap_id": "POAM-FORGE-W5.2",
       "control_id": "sc-39",

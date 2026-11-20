@@ -206,9 +206,9 @@ FORGE_SSP_CONTROLS: tuple[ControlSpec, ...] = (
         pattern_refs=("MCP-003", "MCP-005", "MCP-006"),
         cosis_use_cases=("UC-GEN", "UC-AGENT-SINGLE", "UC-AGENT-MULTI"),
         implementation_narrative=(
-            "Enforces 15.0s upstream HTTP timeout and 32,768-byte ForgeResponseLimitingMiddleware "
-            "(string byte axis shipped in v1.3.0; array-cardinality slicing tracked in "
-            "POAM-FORGE-W4.4)."
+            "Enforces 15.0s upstream HTTP timeout and dual-axis 32,768-byte "
+            "ForgeResponseLimitingMiddleware (Pass 1 collection cardinality slicing + "
+            "Pass 2 conservative UTF-8 string bounding shipped in v1.4.0, closing POAM-FORGE-W4.4)."
         ),
     ),
     ControlSpec(

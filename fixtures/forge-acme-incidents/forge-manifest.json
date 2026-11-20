@@ -2,7 +2,7 @@
   "protocol_revision": "2026-07-28",
   "server_name": "acme-incidents",
   "title": "Acme Incident Management MCP",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Stateless MCP 2026-07-28 server to query and triage operational incidents in Acme Cloud.",
   "upstream": {
     "base_url_env": "ACME_BASE_URL",
