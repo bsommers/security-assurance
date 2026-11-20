@@ -1,0 +1,89 @@
+{
+  "protocol_revision": "2026-07-28",
+  "server_name": "acme-incidents",
+  "title": "Acme Incident Management MCP",
+  "version": "1.3.0",
+  "description": "Stateless MCP 2026-07-28 server to query and triage operational incidents in Acme Cloud.",
+  "upstream": {
+    "base_url_env": "ACME_BASE_URL",
+    "default_base_url": "https://api.acme.internal/v1",
+    "timeout_seconds": 15.0,
+    "max_response_bytes": 32768
+  },
+  "auth": {
+    "type": "bearer",
+    "token_env": "ACME_API_TOKEN"
+  },
+  "tools": [
+    {
+      "name": "get_incident",
+      "title": "Get Incident Summary",
+      "method": "GET",
+      "path": "/incidents/{incident_id}",
+      "description": "Fetch concise details and current operational status for a single incident by ID.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "required_params": ["incident_id"]
+    },
+    {
+      "name": "list_incidents",
+      "title": "List Operational Incidents",
+      "method": "GET",
+      "path": "/incidents",
+      "description": "List operational incidents with optional filtering by lifecycle status, severity, and pagination cursor.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "required_params": []
+    },
+    {
+      "name": "create_incident",
+      "title": "Create Operational Incident",
+      "method": "POST",
+      "path": "/incidents",
+      "description": "Create a new operational incident record with severity tier and optional service metadata.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "required_params": ["title", "severity"]
+    },
+    {
+      "name": "update_incident_status",
+      "title": "Update Incident Status",
+      "method": "PUT",
+      "path": "/incidents/{incident_id}/status",
+      "description": "Transition an existing operational incident to a new lifecycle status with an optional triage note.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "required_params": ["incident_id", "status"]
+    },
+    {
+      "name": "delete_incident",
+      "title": "Delete Operational Incident",
+      "method": "DELETE",
+      "path": "/incidents/{incident_id}",
+      "description": "Permanently delete an operational incident record by unique identifier.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "required_params": ["incident_id"]
+    }
+  ]
+}

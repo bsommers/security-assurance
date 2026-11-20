@@ -1,0 +1,552 @@
+{
+  "assessment-results": {
+    "uuid": "029a7c44-094a-5118-832d-0cc8cc2c5450",
+    "metadata": {
+      "title": "SP 800-53A Automated Assessment Results \u2014 Acme Incident Management MCP",
+      "last-modified": "2026-11-19T00:00:00Z",
+      "version": "1.3.0",
+      "oscal-version": "1.1.2"
+    },
+    "import-ssp": {
+      "href": "ssp-acme-incidents.json"
+    },
+    "results": [
+      {
+        "uuid": "6014e4fa-f172-5393-b64c-b354fd438e5a",
+        "title": "Forge 5-Gate + OPA/Rego Continuous Assurance Run",
+        "description": "Deterministic SP 800-53A technical gate evaluation.",
+        "start": "2026-11-19T00:00:00Z",
+        "findings": [
+          {
+            "uuid": "4d847467-dce0-5e0f-9a9c-ad41bb4506cb",
+            "title": "AC-4 \u2014 Information Flow Enforcement",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "ac-4",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-003,MCP-006"
+              }
+            ]
+          },
+          {
+            "uuid": "f60847a1-fbd8-5827-9668-558f339d0e1c",
+            "title": "AC-6 \u2014 Least Privilege",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "ac-6",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-001"
+              }
+            ]
+          },
+          {
+            "uuid": "511c2f43-7797-568f-bc03-51db8523abc7",
+            "title": "AC-6(1) \u2014 Authorize Access to Security Functions",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "ac-6.1",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-002"
+              }
+            ]
+          },
+          {
+            "uuid": "01deea0c-e831-5f45-9fa8-fcd55d55d3c4",
+            "title": "AC-6(10) \u2014 Prohibit Non-Privileged Users from Executing Privileged Functions",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "ac-6.10",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-005"
+              }
+            ]
+          },
+          {
+            "uuid": "f0c57ff6-8a02-539f-8723-524909e72d33",
+            "title": "AU-3 \u2014 Content of Audit Records",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "au-3",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-001,MCP-008"
+              }
+            ]
+          },
+          {
+            "uuid": "d6d41e9f-4c4d-5846-a782-da317e96b200",
+            "title": "AU-6 \u2014 Audit Record Review, Analysis, and Reporting",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "au-6",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-007,MCP-008"
+              }
+            ]
+          },
+          {
+            "uuid": "79ac9af1-fb61-5767-87ac-76e6b6db098d",
+            "title": "CA-2 \u2014 Control Assessments",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "ca-2",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-002,MCP-008"
+              }
+            ]
+          },
+          {
+            "uuid": "a0cbda87-ec35-58f9-9417-aa70cf493df7",
+            "title": "CM-2 \u2014 Baseline Configuration",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "cm-2",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-002"
+              }
+            ]
+          },
+          {
+            "uuid": "c4a2b2b1-70f9-5636-970e-1b998c9e9944",
+            "title": "CM-5 \u2014 Access Restrictions for Change",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "cm-5",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-002"
+              }
+            ]
+          },
+          {
+            "uuid": "4ccc8e0d-35a2-58a3-af3d-9bd486739892",
+            "title": "CM-7 \u2014 Least Functionality",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "cm-7",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-005,MCP-008"
+              }
+            ]
+          },
+          {
+            "uuid": "f636272c-c52b-508d-b51e-62f6cd044d18",
+            "title": "IA-9 \u2014 Service Identification and Authentication",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "ia-9",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-001,MCP-005"
+              }
+            ]
+          },
+          {
+            "uuid": "ef731351-4a17-5dcb-a950-a011594c1fa0",
+            "title": "PT-2 \u2014 Authority to Process Personally Identifiable Information",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "pt-2",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-004,MCP-007"
+              }
+            ]
+          },
+          {
+            "uuid": "90b181eb-73f3-5088-8fde-910730eabff8",
+            "title": "SA-8 \u2014 Security and Privacy Engineering Principles",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "sa-8",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-001,MCP-002,MCP-003,MCP-004"
+              }
+            ]
+          },
+          {
+            "uuid": "65bf939e-dc17-5cc6-a697-7cd944eba593",
+            "title": "SA-11 \u2014 Developer Testing and Evaluation",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "sa-11",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-008"
+              }
+            ]
+          },
+          {
+            "uuid": "90ab72ed-1376-5dd6-b96c-7b555c5e4431",
+            "title": "SC-5 \u2014 Denial-of-Service Protection",
+            "description": "Tracked in POAM-FORGE-W4.4: High-cardinality short-string arrays (>3,000 items <16B each) bypass string-only 32KiB middleware cap -> M4 (v1.4.0) \u2014 Dual-Axis Structured Payload Bounding (MCP-003)",
+            "target": {
+              "type": "objective-id",
+              "target-id": "sc-5",
+              "status": {
+                "state": "partially-satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-003,MCP-005,MCP-006"
+              }
+            ]
+          },
+          {
+            "uuid": "34ccae87-1600-59a5-b7df-0ac9948f4eb5",
+            "title": "SC-7 \u2014 Boundary Protection",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "sc-7",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-004,MCP-006"
+              }
+            ]
+          },
+          {
+            "uuid": "66d6e45f-e611-5857-bb94-987334a6d19f",
+            "title": "SC-39 \u2014 Process Isolation",
+            "description": "Tracked in POAM-FORGE-W5.2: Host --execution-mode agent relies on chmod 0444 + SHA-256 restore when Docker is absent rather than OS seatbelt/bwrap -> M5 (v2.0.0) \u2014 Kernel Host Sandboxing (MCP-008)",
+            "target": {
+              "type": "objective-id",
+              "target-id": "sc-39",
+              "status": {
+                "state": "partially-satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-002,MCP-008"
+              }
+            ]
+          },
+          {
+            "uuid": "28d1d578-2b8f-5c13-8933-d30cc0bcf587",
+            "title": "SI-7(1) \u2014 Integrity Checks",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "si-7.1",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-002"
+              }
+            ]
+          },
+          {
+            "uuid": "18753db5-37cc-5319-86f5-5a79c3deb510",
+            "title": "SI-10 \u2014 Information Input Validation",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "si-10",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-004,MCP-007,MCP-008"
+              }
+            ]
+          },
+          {
+            "uuid": "931572d3-957f-5fd8-8498-954f772ba633",
+            "title": "SR-3 \u2014 Supply Chain Controls and Processes",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
+            "target": {
+              "type": "objective-id",
+              "target-id": "sr-3",
+              "status": {
+                "state": "satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "automated-gate"
+              },
+              {
+                "name": "patterns",
+                "value": "MCP-002"
+              }
+            ]
+          },
+          {
+            "uuid": "3175670e-e8eb-53b6-9d1e-d7c1a9b84330",
+            "title": "AT-3 \u2014 Role-Based Training",
+            "description": "Awaiting named organizational official signoff; automated LLM grading prohibited.",
+            "target": {
+              "type": "objective-id",
+              "target-id": "at-3",
+              "status": {
+                "state": "other-than-satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "human-attestation-pending"
+              },
+              {
+                "name": "patterns",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "uuid": "4c3bd195-bc6b-5302-b1ca-d35d8bdbd426",
+            "title": "PE-3 \u2014 Physical Access Control",
+            "description": "Awaiting named organizational official signoff; automated LLM grading prohibited.",
+            "target": {
+              "type": "objective-id",
+              "target-id": "pe-3",
+              "status": {
+                "state": "other-than-satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "human-attestation-pending"
+              },
+              {
+                "name": "patterns",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "uuid": "14276fd2-2586-5a6a-a561-a37214e9b280",
+            "title": "PM-9 \u2014 Risk Management Strategy",
+            "description": "Awaiting named organizational official signoff; automated LLM grading prohibited.",
+            "target": {
+              "type": "objective-id",
+              "target-id": "pm-9",
+              "status": {
+                "state": "other-than-satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "human-attestation-pending"
+              },
+              {
+                "name": "patterns",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "uuid": "35531d84-4bbf-5961-979d-d25a80f35d03",
+            "title": "PS-6 \u2014 Access Agreements",
+            "description": "Awaiting named organizational official signoff; automated LLM grading prohibited.",
+            "target": {
+              "type": "objective-id",
+              "target-id": "ps-6",
+              "status": {
+                "state": "other-than-satisfied"
+              }
+            },
+            "props": [
+              {
+                "name": "assessor-type",
+                "value": "human-attestation-pending"
+              },
+              {
+                "name": "patterns",
+                "value": "none"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

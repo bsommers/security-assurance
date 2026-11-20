@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security Assurance Hub — NIST OSCAL 1.1.2 SSPs &amp; OPA/Rego PDPs</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #0f172a;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0c1f3a 0%, var(--bg) 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header, main, footer { max-width: 1120px; margin: 0 auto; padding: 2rem 1.5rem; }
+    header { padding-top: 3.5rem; border-bottom: 1px solid var(--border); }
+    .pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 1.35rem; }
+    .tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--emerald); font-weight: 700; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="pill">OSCAL 1.1.2 SSP / SAR / POA&amp;M</span>
+    <span class="pill">OPA Rego v1 PDPs</span>
+    <span class="pill">4-Repo Assurance Topology</span>
+    <h1>Continuous Security Assurance Hub</h1>
+    <p>
+      Uniting <a href="https://github.com/bsommers/security-controls">security-controls</a> (NIST SP 800-53r5 + COSIS),
+      <a href="https://github.com/bsommers/secure-design-patterns">secure-design-patterns</a> (MCP-001..008), and
+      <a href="https://github.com/bsommers/forge">forge</a> (FastMCP 4.x) via deterministic OSCAL 1.1.2 System Security Plans and Open Policy Agent (Rego v1) gates.
+    </p>
+  </header>
+  <main>
+    <div class="grid">
+      <article class="card">
+        <span class="tag">PDP 1 · Build Gate</span>
+        <h3>manifest_guard.rego</h3>
+        <p>Enforces &le; 15 tools (CM-7), env-bound auth without client passthrough (AC-6 / MCP-001), &le; 32 KiB bounds (SC-5), and AppSec signoff on destructive tools (AC-6(10)).</p>
+      </article>
+      <article class="card">
+        <span class="tag">PDP 2 · ATO Gate</span>
+        <h3>ssp_gate.rego</h3>
+        <p>Verifies P1 COSIS control completeness in OSCAL SSP, blocks machine self-attestation of human controls (CA-2), and requires POA&amp;M entries for partial findings.</p>
+      </article>
+      <article class="card">
+        <span class="tag">PDP 3 · Runtime AuthZ</span>
+        <h3>mcp_tool_authz.rego</h3>
+        <p>Evaluates caller role + tool annotations per MCP invocation, requiring incident-commander role and INC-BREAKGLASS-* tickets for destructive tools.</p>
+      </article>
+    </div>
+  </main>
+  <footer>
+    Repository: <a href="https://github.com/bsommers/security-assurance">github.com/bsommers/security-assurance</a>
+  </footer>
+</body>
+</html>

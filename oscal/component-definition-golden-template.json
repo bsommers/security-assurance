@@ -1,0 +1,263 @@
+{
+  "component-definition": {
+    "uuid": "560c018f-da5a-54bf-b61b-603980ef96db",
+    "metadata": {
+      "title": "MCP Server Forge Golden Template Component Definition (MCP-001..008)",
+      "last-modified": "2026-11-19T00:00:00Z",
+      "version": "1.3.0",
+      "oscal-version": "1.1.2",
+      "props": [
+        {
+          "name": "patterns-source",
+          "value": "https://github.com/bsommers/secure-design-patterns/blob/main/patterns/mcp-serve/catalog.json"
+        },
+        {
+          "name": "controls-source",
+          "value": "https://github.com/bsommers/security-controls/blob/main/catalog/cosis/use-cases.json"
+        }
+      ]
+    },
+    "components": [
+      {
+        "uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+        "type": "software",
+        "title": "FastMCP 4.x Locked Golden Template Chassis",
+        "description": "Immutable auth, lifespan connection pool, dual-axis payload middleware, and 5-gate verification harness implementing MCP-001..MCP-008.",
+        "control-implementations": [
+          {
+            "uuid": "3a780c73-c2bf-542e-91ff-ba72bc43fe48",
+            "source": "https://github.com/bsommers/security-controls/blob/main/catalog/cosis/use-cases.json",
+            "description": "NIST SP 800-53r5 Update 1 + COSIS technical controls.",
+            "implemented-requirements": [
+              {
+                "uuid": "9210365f-062a-5dd1-9edc-2a0ef1d98b50",
+                "control-id": "ac-4",
+                "description": "Stateless SEP-2567 execution in src/server.py and src/deps.py eliminates shared session globals; structured outputs conform to JSON Schema 2020-12 outputSchema.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-003,MCP-006"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-GEN,UC-AGENT-MULTI"
+                  }
+                ]
+              },
+              {
+                "uuid": "9fe61461-3748-5189-9cd2-b6118e41b3f0",
+                "control-id": "ac-6",
+                "description": "src/auth.py RouteDispatchAuth resolves server-bound environment credentials per (HTTP method, path) and prohibits MCP client Authorization header passthrough.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-001"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-AGENT-SINGLE"
+                  }
+                ]
+              },
+              {
+                "uuid": "01967bd7-1f03-53a2-b1e0-8feff62719eb",
+                "control-id": "ac-6.1",
+                "description": "Golden Template security infrastructure (src/auth.py, src/server.py, contract tests, validate_mcp.py) is locked read-only and guarded by SHA-256 digests.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-002"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-AGENT-MULTI,UC-DEV"
+                  }
+                ]
+              },
+              {
+                "uuid": "d599a178-59c9-569d-9aa0-5849bf894198",
+                "control-id": "au-3",
+                "description": "Structured JSON logs emit exclusively to stderr with timestamp, logger, and redacted upstream error context while keeping stdout pure for JSON-RPC frames.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-001,MCP-008"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-GEN"
+                  }
+                ]
+              },
+              {
+                "uuid": "e0a90488-c1ce-5b8c-8b00-190100c94132",
+                "control-id": "au-6",
+                "description": "Primitive RFC 9110 x-mcp-header correlation/idempotency metadata and dashboard/telemetry.py track per-stage validation outcomes across self-healing iterations.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-007,MCP-008"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-AGENT-MULTI"
+                  }
+                ]
+              },
+              {
+                "uuid": "06bb70e2-df3d-5250-a235-5e6b8758b549",
+                "control-id": "ca-2",
+                "description": "scripts/validate_mcp.py executes 5 deterministic offline verification gates independent of generative LLM self-grading.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-002,MCP-008"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-DEV"
+                  }
+                ]
+              },
+              {
+                "uuid": "2456e4a7-e624-52dc-87cc-a23e6ae6a960",
+                "control-id": "cm-2",
+                "description": "golden-template/ maintains the immutable FastMCP 4.x baseline synchronized with active src/{auth,deps,server}.py modules.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-002"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-DEV"
+                  }
+                ]
+              },
+              {
+                "uuid": "3a136554-20c5-55bd-b15d-9948918b4e60",
+                "control-id": "cm-5",
+                "description": "Stage 3 restricts agent writes strictly to src/tools/*.py, tests/unit/*.py, and README.md via container :ro mounts and LockedWorkspaceDigest SHA-256 checks.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-002"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-DEV"
+                  }
+                ]
+              },
+              {
+                "uuid": "44d24a5b-f779-5a15-bd6e-06fbcbf6e7fb",
+                "control-id": "ia-9",
+                "description": "Supports named securitySchemes per OpenAPI operation and prunes unused schemes per server shard during --auto-split-tags.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-001,MCP-005"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-AGENT-MULTI"
+                  }
+                ]
+              },
+              {
+                "uuid": "fad5825c-1928-5688-a4fe-da0af97ec0ac",
+                "control-id": "sa-8",
+                "description": "Implements codified secure design patterns MCP-001..MCP-008 from bsommers/secure-design-patterns across ingestion, template, and runtime layers.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-001,MCP-002,MCP-003,MCP-004"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-DEV"
+                  }
+                ]
+              },
+              {
+                "uuid": "38ca302e-fe45-54d6-828c-215559d1311c",
+                "control-id": "sc-5",
+                "description": "Enforces 15.0s upstream HTTP timeout and 32,768-byte ForgeResponseLimitingMiddleware (string byte axis shipped in v1.3.0; array-cardinality slicing tracked in POAM-FORGE-W4.4).",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-003,MCP-005,MCP-006"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-GEN,UC-AGENT-SINGLE,UC-AGENT-MULTI"
+                  }
+                ]
+              },
+              {
+                "uuid": "2d617e6b-0629-5192-9073-3807f26736bd",
+                "control-id": "sc-7",
+                "description": "Stage 1 normalizer rejects external URI $refs (SSRF block), and runtime tools route exclusively through the lifespan-pooled ApiClient bound to ACME_BASE_URL.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-004,MCP-006"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-AGENT-SINGLE"
+                  }
+                ]
+              },
+              {
+                "uuid": "79ee3124-bda4-5a28-bcae-6d6cfc3dd624",
+                "control-id": "sc-39",
+                "description": "Docker synthesis drops all Linux capabilities (--cap-drop=ALL, non-root UID 65532, :ro rootfs); host fallback kernel seatbelt/bwrap tracked in POAM-FORGE-W5.2.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-002,MCP-008"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-AGENT-SINGLE"
+                  }
+                ]
+              },
+              {
+                "uuid": "55896c9d-f326-58e0-8cff-82e72d7f2071",
+                "control-id": "si-7.1",
+                "description": "LockedWorkspaceDigest verifies pre- and post-turn SHA-256 hashes of every locked chassis file, restoring bytes and raising TamperDetectionError on drift.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-002"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-AGENT-MULTI"
+                  }
+                ]
+              },
+              {
+                "uuid": "1c412c67-c226-5835-9127-2cc59d18da71",
+                "control-id": "sr-3",
+                "description": "GitHub Actions workflows pin all actions to 40-char commit SHAs with permissions: contents: read, persist-credentials: false, and locked uv.lock.",
+                "props": [
+                  {
+                    "name": "secure-design-patterns",
+                    "value": "MCP-002"
+                  },
+                  {
+                    "name": "cosis-use-cases",
+                    "value": "UC-DEV"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

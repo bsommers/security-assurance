@@ -1,0 +1,78 @@
+name: Continuous Security Assurance (OSCAL 1.1.2 + OPA Rego v1)
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  assurance:
+    name: OSCAL Drift, OPA Rego Strict Tests & Python Verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Open Policy Agent (OPA)
+        uses: open-policy-agent/setup-opa@b2b258e089860efaadaaf71bf6e3aecb4a3eeff1 # v2.4.0
+        with:
+          version: latest
+
+      - name: OPA Rego strict syntax & type check
+        run: opa check --strict policies/
+
+      - name: OPA Rego unit test suite (manifest, OSCAL SSP & runtime AuthZ)
+        run: opa test -v policies/
+
+      - name: Set up uv & Python 3.12
+        uses: astral-sh/setup-uv@f94ec6bedd8674c4426838e6b50417d36b6ab231 # v5.3.1
+        with:
+          python-version: "3.12"
+
+      - name: Install dev dependencies
+        run: uv sync
+
+      - name: Verify deterministic OSCAL 1.1.2 SSP/SAR/POA&M & link integrity
+        run: uv run python scripts/validate_assurance.py
+
+      - name: Live OPA evaluation against compiled Forge OSCAL bundle
+        run: |
+          python3 -c '
+          import json
+          from pathlib import Path
+          bundle = {
+              "ssp": json.loads(Path("oscal/ssp-acme-incidents.json").read_text()),
+              "sar": json.loads(Path("oscal/assessment-results-acme-incidents.json").read_text()),
+              "poam": json.loads(Path("oscal/poam-acme-incidents.json").read_text()),
+          }
+          Path("/tmp/oscal-input.json").write_text(json.dumps(bundle))
+          forge_in = {
+              "manifest": json.loads(Path("fixtures/forge-acme-incidents/forge-manifest.json").read_text()),
+              "release": json.loads(Path("fixtures/forge-acme-incidents/forge-release-artifacts.json").read_text()),
+          }
+          Path("/tmp/forge-input.json").write_text(json.dumps(forge_in))
+          '
+          opa eval --fail-defined -i /tmp/forge-input.json -d policies/forge/manifest_guard.rego 'data.assurance.forge.manifest_guard.deny[_]'
+          opa eval --fail-defined -i /tmp/oscal-input.json -d policies/oscal/ssp_gate.rego 'data.assurance.oscal.ssp_gate.deny[_]'
+
+      - name: Ruff lint & Bandit security rules
+        run: uv run ruff check src scripts tests
+
+      - name: Mypy strict typecheck
+        run: uv run mypy --strict -p security_assurance -p scripts
+
+      - name: Pytest suite
+        run: uv run pytest -v

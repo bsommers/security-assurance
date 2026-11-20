@@ -1,0 +1,695 @@
+{
+  "system-security-plan": {
+    "uuid": "167093e3-3bdd-5987-bd31-193efd3ef943",
+    "metadata": {
+      "title": "System Security Plan (SSP) \u2014 Acme Incident Management MCP (acme-incidents)",
+      "last-modified": "2026-11-19T00:00:00Z",
+      "version": "1.3.0",
+      "oscal-version": "1.1.2",
+      "props": [
+        {
+          "name": "protocol-revision",
+          "value": "2026-07-28"
+        },
+        {
+          "name": "cosis-use-cases",
+          "value": "UC-AGENT-SINGLE,UC-AGENT-MULTI,UC-DEV"
+        },
+        {
+          "name": "sp800-53b-baseline",
+          "value": "moderate"
+        }
+      ]
+    },
+    "import-profile": {
+      "href": "https://github.com/bsommers/security-controls/blob/main/catalog/cosis/use-cases.json"
+    },
+    "system-characteristics": {
+      "system-ids": [
+        {
+          "id": "forge-acme-incidents"
+        }
+      ],
+      "system-name": "Acme Incident Management MCP",
+      "description": "Stateless MCP 2026-07-28 server to query and triage operational incidents in Acme Cloud.",
+      "security-sensitivity-level": "moderate",
+      "status": {
+        "state": "operational"
+      },
+      "props": [
+        {
+          "name": "container-image",
+          "value": "ghcr.io/bsommers/forged-mcp-acme-incidents:1.3.0"
+        },
+        {
+          "name": "active-tool-count",
+          "value": "5"
+        },
+        {
+          "name": "max-response-bytes",
+          "value": "32768"
+        },
+        {
+          "name": "appsec-signoff-ticket",
+          "value": "SEC-2026-0412"
+        }
+      ]
+    },
+    "system-implementation": {
+      "components": [
+        {
+          "uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+          "type": "software",
+          "title": "FastMCP 4.x Golden Template Chassis (Locked :ro)",
+          "description": "Provides server-bound auth, lifespan pool, and middleware.",
+          "status": {
+            "state": "operational"
+          }
+        },
+        {
+          "uuid": "ddf3e45d-58a2-5e7f-9768-3a29b2e72a7d",
+          "type": "software",
+          "title": "Forged Domain Tool Overlay (acme-incidents)",
+          "description": "5 stateless incident tools verified at 100% branch coverage.",
+          "status": {
+            "state": "operational"
+          }
+        },
+        {
+          "uuid": "6d30c795-8cba-5a37-94e4-0d60bbe55f6c",
+          "type": "policy",
+          "title": "Organizational Governance & Facility Controls",
+          "description": "Human-attested training, physical, and RMF governance controls.",
+          "status": {
+            "state": "under-development"
+          }
+        }
+      ]
+    },
+    "control-implementation": {
+      "description": "Component-inherited NIST SP 800-53r5 Update 1 + COSIS control implementation backed by bsommers/secure-design-patterns (MCP-001..008).",
+      "implemented-requirements": [
+        {
+          "uuid": "f30d72fc-7889-5707-b039-9681c7ce8773",
+          "control-id": "ac-4",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "AC-4"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-003,MCP-006"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "5e74d8b6-4fb7-5312-bebf-393f2fd53757",
+              "description": "Stateless SEP-2567 execution in src/server.py and src/deps.py eliminates shared session globals; structured outputs conform to JSON Schema 2020-12 outputSchema."
+            }
+          ]
+        },
+        {
+          "uuid": "10d30f55-12ae-5656-83a4-5805ca7f0f19",
+          "control-id": "ac-6",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "AC-6"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-001"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "7dbe137e-eb04-5bb8-bdb1-29114ce51765",
+              "description": "src/auth.py RouteDispatchAuth resolves server-bound environment credentials per (HTTP method, path) and prohibits MCP client Authorization header passthrough."
+            }
+          ]
+        },
+        {
+          "uuid": "54f85538-6619-513a-8082-8f00179b76c3",
+          "control-id": "ac-6.1",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "AC-6(1)"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-002"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "33da8289-951f-5d9c-b89d-6f388fc7ab5c",
+              "description": "Golden Template security infrastructure (src/auth.py, src/server.py, contract tests, validate_mcp.py) is locked read-only and guarded by SHA-256 digests."
+            }
+          ]
+        },
+        {
+          "uuid": "433940f4-bf1a-5110-ae07-d129aa14463c",
+          "control-id": "ac-6.10",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "AC-6(10)"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-005"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ddf3e45d-58a2-5e7f-9768-3a29b2e72a7d",
+              "uuid": "dded6fbb-1467-5be7-8cf4-a9457444b042",
+              "description": "Destructive operations (delete_incident) declare ToolAnnotations(destructiveHint=True), trigger Stage 5 AppSec signoff, and require break-glass tickets in runtime Rego PDP."
+            }
+          ]
+        },
+        {
+          "uuid": "b9036134-dfe3-5f55-a6ff-f44be40b973d",
+          "control-id": "au-3",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "AU-3"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-001,MCP-008"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "0393dade-8707-54d4-988a-3554c10d05d1",
+              "description": "Structured JSON logs emit exclusively to stderr with timestamp, logger, and redacted upstream error context while keeping stdout pure for JSON-RPC frames."
+            }
+          ]
+        },
+        {
+          "uuid": "ad1b8e2a-ccaf-5545-b280-941b28f8960c",
+          "control-id": "au-6",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "AU-6"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-007,MCP-008"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "fc12ba9a-c944-5e6c-941f-ac39a2262be3",
+              "description": "Primitive RFC 9110 x-mcp-header correlation/idempotency metadata and dashboard/telemetry.py track per-stage validation outcomes across self-healing iterations."
+            }
+          ]
+        },
+        {
+          "uuid": "8c7d5743-dcb7-5892-9756-963f982a0c7f",
+          "control-id": "ca-2",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "CA-2"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-002,MCP-008"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "04e18ab1-26c7-5f19-90e8-81392ec54fed",
+              "description": "scripts/validate_mcp.py executes 5 deterministic offline verification gates independent of generative LLM self-grading."
+            }
+          ]
+        },
+        {
+          "uuid": "cd684de8-a17c-557a-95d9-a47da8e976fe",
+          "control-id": "cm-2",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "CM-2"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-002"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "5958cada-9d43-5c39-a0cb-dd2b4496eec2",
+              "description": "golden-template/ maintains the immutable FastMCP 4.x baseline synchronized with active src/{auth,deps,server}.py modules."
+            }
+          ]
+        },
+        {
+          "uuid": "7819cc4a-7dc5-5fba-a1a6-ff2d2490efa4",
+          "control-id": "cm-5",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "CM-5"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-002"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "28a06c00-37cf-5dbb-bf6b-18b30509a183",
+              "description": "Stage 3 restricts agent writes strictly to src/tools/*.py, tests/unit/*.py, and README.md via container :ro mounts and LockedWorkspaceDigest SHA-256 checks."
+            }
+          ]
+        },
+        {
+          "uuid": "c4d1c174-30db-588c-9581-16084ba99afc",
+          "control-id": "cm-7",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "CM-7"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-005,MCP-008"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ddf3e45d-58a2-5e7f-9768-3a29b2e72a7d",
+              "uuid": "1baae441-09ab-5b9b-b2a9-243446d9b603",
+              "description": "Enforces <= 15 tools per active profile (acme-incidents exposes 5 tools), bans deprecated SEP-2577 callbacks, and blocks os/subprocess/socket imports in src/tools/."
+            }
+          ]
+        },
+        {
+          "uuid": "2728a04b-65a0-5dff-8944-c9ba90e449f3",
+          "control-id": "ia-9",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "IA-9"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-001,MCP-005"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "164313db-558a-5e61-be17-148976752a2e",
+              "description": "Supports named securitySchemes per OpenAPI operation and prunes unused schemes per server shard during --auto-split-tags."
+            }
+          ]
+        },
+        {
+          "uuid": "e2c55199-c67a-51c3-a2a7-34e12a992b8c",
+          "control-id": "pt-2",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "PT-2"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-004,MCP-007"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ddf3e45d-58a2-5e7f-9768-3a29b2e72a7d",
+              "uuid": "ed05c4d6-76cd-5bc8-89e0-ef51cda4871f",
+              "description": "Projects upstream responses into explicit typed Pydantic summary models (<= 8 high-signal fields) and blocks sensitive PII/secret names on x-mcp-header."
+            }
+          ]
+        },
+        {
+          "uuid": "912e958f-ed2d-534f-a63e-587cc02bb51e",
+          "control-id": "sa-8",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SA-8"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-001,MCP-002,MCP-003,MCP-004"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "809293f2-b463-5e58-8ea2-3c15b953fde2",
+              "description": "Implements codified secure design patterns MCP-001..MCP-008 from bsommers/secure-design-patterns across ingestion, template, and runtime layers."
+            }
+          ]
+        },
+        {
+          "uuid": "d3e63424-ed41-530d-ac54-eba205f1d46d",
+          "control-id": "sa-11",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SA-11"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-008"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ddf3e45d-58a2-5e7f-9768-3a29b2e72a7d",
+              "uuid": "331d5556-2531-55f3-8044-2ef615bfa7ce",
+              "description": "Verified via Ruff S+T20, mypy --strict, AST audit, 100.0% branch coverage on src/tools/, and live subprocess PythonStdioTransport server/discover."
+            }
+          ]
+        },
+        {
+          "uuid": "097f4461-23b4-5cec-bacb-fae2f6dcde9e",
+          "control-id": "sc-5",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SC-5"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-003,MCP-005,MCP-006"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "7162f466-27b4-5571-b9b9-60b9f25bc332",
+              "description": "Enforces 15.0s upstream HTTP timeout and 32,768-byte ForgeResponseLimitingMiddleware (string byte axis shipped in v1.3.0; array-cardinality slicing tracked in POAM-FORGE-W4.4)."
+            }
+          ]
+        },
+        {
+          "uuid": "7072235c-fecb-574d-8465-b696b7f30a06",
+          "control-id": "sc-7",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SC-7"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-004,MCP-006"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "55e9f7f4-49cf-5763-8d7c-a9281d8e6f6a",
+              "description": "Stage 1 normalizer rejects external URI $refs (SSRF block), and runtime tools route exclusively through the lifespan-pooled ApiClient bound to ACME_BASE_URL."
+            }
+          ]
+        },
+        {
+          "uuid": "1a2db502-4230-53d6-a6b0-df6fc80bf69b",
+          "control-id": "sc-39",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SC-39"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-002,MCP-008"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "c93775f1-316e-5c9a-a996-fce751a85ece",
+              "description": "Docker synthesis drops all Linux capabilities (--cap-drop=ALL, non-root UID 65532, :ro rootfs); host fallback kernel seatbelt/bwrap tracked in POAM-FORGE-W5.2."
+            }
+          ]
+        },
+        {
+          "uuid": "3681684b-14eb-5fbf-96a3-053c0bde8e77",
+          "control-id": "si-7.1",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SI-7(1)"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-002"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "fb96b467-2561-5bb4-9822-20472e4b8939",
+              "description": "LockedWorkspaceDigest verifies pre- and post-turn SHA-256 hashes of every locked chassis file, restoring bytes and raising TamperDetectionError on drift."
+            }
+          ]
+        },
+        {
+          "uuid": "86af5fa3-bc4a-5439-b834-aff41364f396",
+          "control-id": "si-10",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SI-10"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-004,MCP-007,MCP-008"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ddf3e45d-58a2-5e7f-9768-3a29b2e72a7d",
+              "uuid": "afd8a90f-39b9-51b5-9414-601c6db09440",
+              "description": "Enforces Pydantic Field constraints, RFC 9110 1*tchar x-mcp-header validation, and AST docstring prompt-injection checks."
+            }
+          ]
+        },
+        {
+          "uuid": "95a3c81d-aa0b-51f7-8f43-32f4789bf02d",
+          "control-id": "sr-3",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "SR-3"
+            },
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "MCP-002"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9e7884d8-1667-5102-98ae-eb9e4a7cc75e",
+              "uuid": "609364b8-fa26-55f2-9b0c-44f07d80fecd",
+              "description": "GitHub Actions workflows pin all actions to 40-char commit SHAs with permissions: contents: read, persist-credentials: false, and locked uv.lock."
+            }
+          ]
+        },
+        {
+          "uuid": "aa90dcbd-f921-5fc1-83a1-efc76bbcb0f1",
+          "control-id": "at-3",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "AT-3"
+            },
+            {
+              "name": "implementation-status",
+              "value": "planned"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "organizational"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "6d30c795-8cba-5a37-94e4-0d60bbe55f6c",
+              "uuid": "0e820326-7776-54c3-afb7-ae3d2bc23e47",
+              "description": "[HUMAN ATTESTATION REQUIRED] Organization Security Lead must attest that AI/MCP engineers completed role-based secure AI/SSDF training."
+            }
+          ]
+        },
+        {
+          "uuid": "0bf09148-b2a5-54e4-b3d1-09e60e799f5f",
+          "control-id": "pe-3",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "PE-3"
+            },
+            {
+              "name": "implementation-status",
+              "value": "planned"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "organizational"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "6d30c795-8cba-5a37-94e4-0d60bbe55f6c",
+              "uuid": "42fa1902-c8e6-5423-9253-2f80cc2bca15",
+              "description": "[HUMAN ATTESTATION REQUIRED] Inherited from cloud/datacenter facility authorization; requires physical security officer signoff."
+            }
+          ]
+        },
+        {
+          "uuid": "36aa05ce-3fad-582b-a481-5e23bf25b686",
+          "control-id": "pm-9",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "PM-9"
+            },
+            {
+              "name": "implementation-status",
+              "value": "planned"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "organizational"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "6d30c795-8cba-5a37-94e4-0d60bbe55f6c",
+              "uuid": "f69e4b68-3679-50b2-a5cb-c33c8677066a",
+              "description": "[HUMAN ATTESTATION REQUIRED] Authorizing Official (AO) risk tolerance and NIST AI RMF governance charter signoff required."
+            }
+          ]
+        },
+        {
+          "uuid": "b1037cfb-90ba-541b-8abf-f0639ae6e8e7",
+          "control-id": "ps-6",
+          "props": [
+            {
+              "name": "nist-id",
+              "value": "PS-6"
+            },
+            {
+              "name": "implementation-status",
+              "value": "planned"
+            },
+            {
+              "name": "secure-design-patterns",
+              "value": "organizational"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "6d30c795-8cba-5a37-94e4-0d60bbe55f6c",
+              "uuid": "e34349bd-5203-5e33-aade-963804e6c398",
+              "description": "[HUMAN ATTESTATION REQUIRED] Privileged incident-commander personnel access agreements must be attested by HR / Security Operations."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
