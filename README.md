@@ -1,11 +1,19 @@
 # Security Assurance Hub (`OSCAL 1.1.2` + `OPA/Rego`)
 
+<p align="center">
+  <img src="docs/assets/logo.svg" alt="Security Assurance — Tri-Gate Policy Conductor Hero Banner" width="100%" />
+</p>
+
 > **Tying NIST SP 800-53r5 + COSIS [`security-controls`](https://github.com/bsommers/security-controls), MCP [`secure-design-patterns`](https://github.com/bsommers/secure-design-patterns), and [`forge`](https://github.com/bsommers/forge) together into executable OSCAL 1.1.2 System Security Plans (SSPs) and Open Policy Agent (Rego v1) Policy Decision Points.**
 
 [![OSCAL 1.1.2](https://img.shields.io/badge/NIST_OSCAL-1.1.2_SSP_%7C_SAR_%7C_POA%26M-0284c7)](oscal/ssp-acme-incidents.json)
 [![OPA Rego v1](https://img.shields.io/badge/OPA-Rego_v1_Policies-10b981)](policies/)
 [![Target](https://img.shields.io/badge/Target_System-MCP_Server_Forge-f59e0b)](https://github.com/bsommers/forge)
 [![License: MIT](https://img.shields.io/badge/License-MIT-64748b)](LICENSE)
+
+<p align="center">
+  <img src="docs/assets/hero-illustration.png" alt="Art-Deco Tri-Gate Gyroscopic Policy Rings Projecting Emerald ATO Verification Beam" width="100%" />
+</p>
 
 ---
 
