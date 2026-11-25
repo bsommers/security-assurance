@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "security-assurance"
-version = "1.0.0"
+version = "1.1.0"
 description = "Continuous Security Assurance hub uniting NIST SP 800-53r5 + COSIS security-controls, MCP secure-design-patterns, NIST OSCAL 1.1.2 System Security Plans (SSP/SAP/SAR/POA&M), and Open Policy Agent (Rego v1) policy-as-code gates."
 readme = "README.md"
 requires-python = ">=3.11"

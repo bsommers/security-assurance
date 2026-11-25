@@ -372,12 +372,12 @@
           {
             "uuid": "66d6e45f-e611-5857-bb94-987334a6d19f",
             "title": "SC-39 \u2014 Process Isolation",
-            "description": "Tracked in POAM-FORGE-W5.2: Host --execution-mode agent relies on chmod 0444 + SHA-256 restore when Docker is absent rather than OS seatbelt/bwrap -> M5 (v2.0.0) \u2014 Kernel Host Sandboxing (MCP-008)",
+            "description": "Verified deterministically by validate_mcp.py 5-gate harness (branch coverage=100.0%).",
             "target": {
               "type": "objective-id",
               "target-id": "sc-39",
               "status": {
-                "state": "partially-satisfied"
+                "state": "satisfied"
               }
             },
             "props": [

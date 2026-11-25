@@ -32,7 +32,7 @@
 | **SA-11** | Developer Testing and Evaluation | `overlay` | `MCP-008` | `satisfied` |
 | **SC-5** | Denial-of-Service Protection | `chassis` | `MCP-003`, `MCP-005`, `MCP-006` | `satisfied` |
 | **SC-7** | Boundary Protection | `chassis` | `MCP-004`, `MCP-006` | `satisfied` |
-| **SC-39** | Process Isolation | `chassis` | `MCP-002`, `MCP-008` | `partially-satisfied` |
+| **SC-39** | Process Isolation | `chassis` | `MCP-002`, `MCP-008` | `satisfied` |
 | **SI-7(1)** | Integrity Checks | `chassis` | `MCP-002` | `satisfied` |
 | **SI-10** | Information Input Validation | `overlay` | `MCP-004`, `MCP-007`, `MCP-008` | `satisfied` |
 | **SR-3** | Supply Chain Controls and Processes | `chassis` | `MCP-002` | `satisfied` |
@@ -45,4 +45,4 @@
 
 | Gap ID & Control | Scheduled Remediation |
 |------------------|-----------------------|
-| **POAM-FORGE-W5.2 (SC-39): Host --execution-mode agent relies on chmod 0444 + SHA-256 restore when Docker is absent rather than OS seatbelt/bwrap** | Remediation scheduled in M5 (v2.0.0) — Kernel Host Sandboxing (MCP-008) (target 2027-01-15). |
+| *None (`0` open technical POA&M items)* | Both `POAM-FORGE-W4.4` (`SC-5`) and `POAM-FORGE-W5.2` (`SC-39`) closed in Forge `v2.0.0`. |

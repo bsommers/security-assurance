@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.0] - 2026-11-21
+
+### Changed
+- **Closed `POAM-FORGE-W5.2` (`NIST SC-39` -> `satisfied`, `0` open POA&M items)**:
+  - Updated `forge-acme-incidents` continuous assurance bundle to `bsommers/forge` `v2.0.0` (`forge/sandbox.py` macOS `sandbox-exec` / Linux `bwrap` host isolation + recorded contract fixture replay) and `bsommers/security-controls` `v1.1.0` (`1,189`-control NIST SP 800-53 Rev. 5.1.1 index).
+
 ## [1.0.0] - 2026-11-19
 
 ### Added

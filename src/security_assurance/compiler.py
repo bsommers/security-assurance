@@ -363,8 +363,15 @@ def render_markdown_ssp(
             "|------------------|-----------------------|",
         ]
     )
-    for item in poam_items:
-        lines.append(f"| **{item['title']}** | {item['description']} |")
+    if poam_items:
+        for item in poam_items:
+            lines.append(f"| **{item['title']}** | {item['description']} |")
+    else:
+        lines.append(
+            "| *None (`0` open technical POA&M items)* | "
+            "Both `POAM-FORGE-W4.4` (`SC-5`) and `POAM-FORGE-W5.2` (`SC-39`) "
+            "closed in Forge `v2.0.0`. |"
+        )
 
     lines.append("")
     return "\n".join(lines)

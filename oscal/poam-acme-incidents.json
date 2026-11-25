@@ -10,26 +10,6 @@
     "import-ssp": {
       "href": "ssp-acme-incidents.json"
     },
-    "poam-items": [
-      {
-        "uuid": "f7584300-ca74-5728-93a6-279dc584a995",
-        "title": "POAM-FORGE-W5.2 (SC-39): Host --execution-mode agent relies on chmod 0444 + SHA-256 restore when Docker is absent rather than OS seatbelt/bwrap",
-        "description": "Remediation scheduled in M5 (v2.0.0) \u2014 Kernel Host Sandboxing (MCP-008) (target 2027-01-15).",
-        "props": [
-          {
-            "name": "gap-id",
-            "value": "POAM-FORGE-W5.2"
-          },
-          {
-            "name": "control-id",
-            "value": "sc-39"
-          },
-          {
-            "name": "target-date",
-            "value": "2027-01-15"
-          }
-        ]
-      }
-    ]
+    "poam-items": []
   }
 }

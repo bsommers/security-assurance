@@ -27,14 +27,15 @@ def test_oscal_ssp_compilation_is_byte_deterministic() -> None:
     assert json.dumps(bundle_a.ssp, sort_keys=True) == json.dumps(bundle_b.ssp, sort_keys=True)
     assert bundle_a.markdown_ssp == bundle_b.markdown_ssp
     assert bundle_a.ssp["system-security-plan"]["metadata"]["oscal-version"] == "1.1.2"
-    # POAM-FORGE-W4.4 (sc-5) is closed in Forge v1.4.0; only POAM-FORGE-W5.2 (sc-39) remains open
-    assert len(bundle_a.poam["plan-of-action-and-milestones"]["poam-items"]) == 1
-    sc5 = next(
-        f
-        for f in bundle_a.assessment_results["assessment-results"]["results"][0]["findings"]
-        if f["target"]["target-id"] == "sc-5"
-    )
-    assert sc5["target"]["status"]["state"] == "satisfied"
+    # Both POAM-FORGE-W4.4 (sc-5) and POAM-FORGE-W5.2 (sc-39) are closed in Forge v2.0.0!
+    assert len(bundle_a.poam["plan-of-action-and-milestones"]["poam-items"]) == 0
+    for cid in ("sc-5", "sc-39"):
+        finding = next(
+            f
+            for f in bundle_a.assessment_results["assessment-results"]["results"][0]["findings"]
+            if f["target"]["target-id"] == cid
+        )
+        assert finding["target"]["status"]["state"] == "satisfied"
 
 
 def test_manifest_guard_blocks_passthrough_oversized_tools_and_unsigned_destructive() -> None:
@@ -70,9 +71,11 @@ def test_oscal_ssp_gate_enforces_poam_and_blocks_llm_self_attestation() -> None:
     }
     assert evaluate_oscal_ssp_gate(valid_input) == []
 
-    # Removing POA&M items blocks ATO because sc-39 is partially-satisfied on host
+    # Untracked partially-satisfied control without a matching POA&M item blocks ATO
     missing_poam = copy.deepcopy(valid_input)
-    missing_poam["poam"]["plan-of-action-and-milestones"]["poam-items"] = []
+    for f in missing_poam["sar"]["assessment-results"]["results"][0]["findings"]:
+        if f["target"]["target-id"] == "sc-39":
+            f["target"]["status"]["state"] = "partially-satisfied"
     denies = evaluate_oscal_ssp_gate(missing_poam)
     assert any("sc-39" in d for d in denies)
 

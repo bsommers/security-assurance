@@ -1,8 +1,12 @@
 {
   "system_id": "forge-acme-incidents",
   "repository": "https://github.com/bsommers/forge",
-  "git_tag": "v1.4.0",
-  "cosis_use_cases": ["UC-AGENT-SINGLE", "UC-AGENT-MULTI", "UC-DEV"],
+  "git_tag": "v2.0.0",
+  "cosis_use_cases": [
+    "UC-AGENT-SINGLE",
+    "UC-AGENT-MULTI",
+    "UC-DEV"
+  ],
   "baseline": "moderate",
   "gates": {
     "gate_1_ruff_bandit_t20": "pass",
@@ -13,15 +17,9 @@
     "github_actions_sha_pinned": true,
     "locked_workspace_sha256_verified": true,
     "dual_axis_payload_bounding_verified": true,
-    "stage5_emit_oscal_enabled": true
+    "stage5_emit_oscal_enabled": true,
+    "kernel_host_sandbox_verified": true,
+    "recorded_contract_fixture_replay_enabled": true
   },
-  "known_limitations": [
-    {
-      "gap_id": "POAM-FORGE-W5.2",
-      "control_id": "sc-39",
-      "title": "Host --execution-mode agent relies on chmod 0444 + SHA-256 restore when Docker is absent rather than OS seatbelt/bwrap",
-      "remediation_milestone": "M5 (v2.0.0) — Kernel Host Sandboxing (MCP-008)",
-      "target_date": "2027-01-15"
-    }
-  ]
+  "known_limitations": []
 }
